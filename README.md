@@ -19,16 +19,16 @@ Pointers are one of the most powerful parts of C, and one of the easiest places 
 
 Start from top to bottom for the best progression:
 
-- 01_intro.c
-- 02_pointerArithmetic.c
-- 03_pointerTypes.c
-- 04_pointerToPointer.c
-- 05_pointerArguments.c
-- 06_pointersAndArrays.c
-- 07_arraysArguments.c
-- 08_charArrayPointer.c
-- 09_multidimArrays.c
-- 10_dynamicMemory.c
+- [01_intro.c](01_intro.c)
+- [02_pointerArithmetic.c](02_pointerArithmetic.c)
+- [03_pointerTypes.c](03_pointerTypes.c)
+- [04_pointerToPointer.c](04_pointerToPointer.c)
+- [05_pointerArguments.c](05_pointerArguments.c)
+- [06_pointersAndArrays.c](06_pointersAndArrays.c)
+- [07_arraysArguments.c](07_arraysArguments.c)
+- [08_charArrayPointer.c](08_charArrayPointer.c)
+- [09_multidimArrays.c](09_multidimArrays.c)
+- [10_dynamicMemory.c](10_dynamicMemory.c)
 
 ## Quick Start
 
@@ -42,7 +42,7 @@ Prerequisites:
 1. Choose a lesson file and compile it:
 
 ```bash
-gcc -Wall -Wextra -std=c11 10_dynamicMemory.c -o dynamicMemory
+gcc 10_dynamicMemory.c -o dynamicMemory
 ```
 
 2. Run the program:
