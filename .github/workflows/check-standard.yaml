@@ -1,0 +1,216 @@
+name: C CI/CD
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Build and test all C programs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect source directory
+        run: |
+          set -euo pipefail
+          if ls -1 *.c >/dev/null 2>&1; then
+            echo "SRC_DIR=." >> "$GITHUB_ENV"
+          elif ls -1 introPointers/*.c >/dev/null 2>&1; then
+            echo "SRC_DIR=introPointers" >> "$GITHUB_ENV"
+          else
+            echo "No C sources found at repo root or in introPointers/."
+            exit 1
+          fi
+
+      - name: Verify source files exist
+        run: |
+          set -euo pipefail
+          ls -1 "$SRC_DIR"/*.c
+
+      - name: Compile all C programs
+        run: |
+          set -euo pipefail
+          mkdir -p "$SRC_DIR"/build
+          for src in "$SRC_DIR"/*.c; do
+            base="$(basename "$src")"
+            out="$SRC_DIR/build/${base%.c}"
+            echo "Compiling $src -> $out"
+            gcc -std=c11 -Wall -Wextra "$src" -o "$out"
+          done
+
+      - name: Run all compiled programs
+        run: |
+          set -euo pipefail
+          for bin in "$SRC_DIR"/build/*; do
+            name="$(basename "$bin")"
+            echo "Running $name"
+
+            if [ "$name" = "10_dynamicMemory" ]; then
+              printf "3\n10\n20\n30\n" | timeout 10s "$bin"
+            else
+              timeout 10s "$bin"
+            fi
+
+            echo "Finished $name"
+          done
+
+  windows-test:
+    name: Build and test all C programs (Windows)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSYS2 with GCC
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          msystem: MINGW64
+          install: >-
+            mingw-w64-x86_64-gcc
+            coreutils
+
+      - name: Detect source directory
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          if ls -1 *.c >/dev/null 2>&1; then
+            echo "SRC_DIR=." >> "$GITHUB_ENV"
+          elif ls -1 introPointers/*.c >/dev/null 2>&1; then
+            echo "SRC_DIR=introPointers" >> "$GITHUB_ENV"
+          else
+            echo "No C sources found at repo root or in introPointers/."
+            exit 1
+          fi
+
+      - name: Verify source files exist
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          ls -1 "$SRC_DIR"/*.c
+
+      - name: Compile all C programs
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          mkdir -p "$SRC_DIR"/build
+          for src in "$SRC_DIR"/*.c; do
+            base="$(basename "$src")"
+            out="$SRC_DIR/build/${base%.c}"
+            echo "Compiling $src -> $out"
+            gcc -std=c11 -Wall -Wextra "$src" -o "$out"
+          done
+
+      - name: Run all compiled programs
+        shell: msys2 {0}
+        run: |
+          set -euo pipefail
+          for bin in "$SRC_DIR"/build/*; do
+            name="$(basename "$bin")"
+            echo "Running $name"
+
+            if [ "$name" = "10_dynamicMemory" ] || [ "$name" = "10_dynamicMemory.exe" ]; then
+              printf "3\n10\n20\n30\n" | timeout 10s "$bin"
+            else
+              timeout 10s "$bin"
+            fi
+
+            echo "Finished $name"
+          done
+
+  macos-test:
+    name: Build and test all C programs (macOS)
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect source directory
+        run: |
+          set -euo pipefail
+          if ls -1 *.c >/dev/null 2>&1; then
+            echo "SRC_DIR=." >> "$GITHUB_ENV"
+          elif ls -1 introPointers/*.c >/dev/null 2>&1; then
+            echo "SRC_DIR=introPointers" >> "$GITHUB_ENV"
+          else
+            echo "No C sources found at repo root or in introPointers/."
+            exit 1
+          fi
+
+      - name: Verify source files exist
+        run: |
+          set -euo pipefail
+          ls -1 "$SRC_DIR"/*.c
+
+      - name: Compile all C programs
+        run: |
+          set -euo pipefail
+          mkdir -p "$SRC_DIR"/build
+          for src in "$SRC_DIR"/*.c; do
+            base="$(basename "$src")"
+            out="$SRC_DIR/build/${base%.c}"
+            echo "Compiling $src -> $out"
+            gcc -std=c11 -Wall -Wextra "$src" -o "$out"
+          done
+
+      - name: Run all compiled programs
+        run: |
+          set -euo pipefail
+          for bin in "$SRC_DIR"/build/*; do
+            name="$(basename "$bin")"
+            echo "Running $name"
+
+            if [ "$name" = "10_dynamicMemory" ]; then
+              printf "3\n10\n20\n30\n" | timeout 10s "$bin"
+            else
+              timeout 10s "$bin"
+            fi
+
+            echo "Finished $name"
+          done
+
+  package:
+    name: Package compiled artifacts
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    needs: [test, windows-test, macos-test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect source directory
+        run: |
+          set -euo pipefail
+          if ls -1 *.c >/dev/null 2>&1; then
+            echo "SRC_DIR=." >> "$GITHUB_ENV"
+          elif ls -1 introPointers/*.c >/dev/null 2>&1; then
+            echo "SRC_DIR=introPointers" >> "$GITHUB_ENV"
+          else
+            echo "No C sources found at repo root or in introPointers/."
+            exit 1
+          fi
+
+      - name: Rebuild binaries for packaging
+        run: |
+          set -euo pipefail
+          mkdir -p "$SRC_DIR"/build
+          for src in "$SRC_DIR"/*.c; do
+            base="$(basename "$src")"
+            out="$SRC_DIR/build/${base%.c}"
+            gcc -std=c11 -Wall -Wextra "$src" -o "$out"
+          done
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: c-binaries
+          path: ${{ env.SRC_DIR }}/build/
