@@ -18,7 +18,7 @@ void echoMSG(const char *ptr){
 }
 
 
- void main(){
+ int main(){
     // PART 1
     char c[5];
     c[0] = 'P';
@@ -64,4 +64,5 @@ void echoMSG(const char *ptr){
     // greetings[0] = 'h'; // this will cause a segmentation fault because we are trying to modify a string literal, which is stored in read-only memory
     // printf("\n%s\n", greetings); // print the string pointed to by greetings
     echoMSG(greetings); // we can also pass the pointer to a character that points to a string literal to the echoMSG function
+    return 0;
 }

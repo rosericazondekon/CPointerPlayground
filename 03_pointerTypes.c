@@ -8,7 +8,7 @@
 
  #include <stdio.h>
 
- void main(){
+ int main(){
     int a = 1025; // declare and initialize an integer variable a
     int *ip; // declare a pointer variable ip that can point to an integer
     ip = &a; // assign the address of a to pointer ip
@@ -37,4 +37,5 @@
 
     printf("Value at address of pointer vp (after typecasting to int): %d\n", *(int *)vp); // we can dereference vp after typecasting it to the correct data type (int in this case)
     printf("Value at address of pointer vp (after typecasting to char): %d\n", *(char *)vp); // we can dereference vp after typecasting it to the correct data type (char in this case)
+    return 0;
  }

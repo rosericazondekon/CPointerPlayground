@@ -9,7 +9,7 @@
  #include <stdio.h>
 
 
- void main(){
+ int main(){
     int a = 7; // declare and initialize an integer variable a
     int *p = &a; // declare and initialize a pointer variable p that points to a
     int **pp = &p; // declare and initialize a pointer to pointer variable pp that points to pointer p
@@ -25,4 +25,5 @@
 
     **pp = *p + 5; // change the value of a through pointer to pointer pp
     printf("New value of a (after `**pp = *p + 5`): %d\n", a); // print the new value of a
+    return 0;
  }

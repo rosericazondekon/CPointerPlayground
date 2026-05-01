@@ -30,7 +30,7 @@ void doubleArray(int *arr, int size){
     }
 }
 
-void main(){
+int main(){
     int A[] = {1, 2, 3, 4, 5}; // declare and initialize an array of integers
     int size = sizeof(A) / sizeof(int); // calculate the number of elements in the array
     
@@ -48,4 +48,6 @@ void main(){
     for(int i = 0; i < size; i++){
         printf("%d ", A[i]); // print the modified elements of array A
     }
+    printf("\n");
+    return 0;
 }

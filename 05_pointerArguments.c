@@ -34,4 +34,5 @@ void incrementByReference(int *a){
     incrementByReference(&a); // call incrementByReference function with address of variable a (call by reference)
     printf("Address of variable a in main function: %d\n", &a); // print the address of variable a in main function
     printf("Value of variable a in main function: %d\n", a); // print the value of variable a in main function (will change because we passed a by reference)
+    return 0;
  }

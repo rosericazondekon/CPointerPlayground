@@ -9,7 +9,7 @@
  #include <stdio.h>
  #include <stdlib.h> // Include for dynamic memory allocation functions like malloc, calloc, realloc, and free
 
- void main(){
+ int main(){
 
     // PART 1
     int a; // goes on the stack
@@ -69,6 +69,7 @@
     printf("]\n");
 
     free(dynamicArray); // free the memory allocated on the heap to prevent memory leaks
+    return 0;
 }
 
  

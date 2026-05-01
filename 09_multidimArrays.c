@@ -22,7 +22,7 @@ void multiDFuncC(int (*arr)[2][2]){ // OR void multiDFuncC(int arr[][2][2])
 } // This function takes a pointer to an array of 2 arrays of 2 integers, which can be used to access the elements of a 3D array when passed as an argument
 
 
- void main(){
+ int main(){
     int multiArray[3][2][2] = {
         {{1, 2}, {3, 4}},
         {{5, 6}, {7, 8}},
@@ -44,5 +44,5 @@ void multiDFuncC(int (*arr)[2][2]){ // OR void multiDFuncC(int arr[][2][2])
     multiDFuncA(A); // we can pass a 1D array to a function that expects a pointer to an integer, since the array will decay to a pointer to its first element
     multiDFuncB(B); // we can pass a 2D array to a function that expects a pointer to an array of 3 integers, since the array will decay to a pointer to its first element (which is an array of 3 integers)
     multiDFuncC(multiArray); // we can pass a 3D array to a function that expects a pointer to an array of 2 arrays of 2 integers, since the array will decay to a pointer to its first element (which is an array of 2 arrays of 2 integers)
- }
- 
+    return 0;
+}

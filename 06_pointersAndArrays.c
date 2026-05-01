@@ -8,7 +8,7 @@
 
  #include <stdio.h>
 
- void main(){
+ int main(){
     int A[] = {1, 2, 3, 4, 5}; // declare and initialize an array of integers
     int *p = A; // declare a pointer to an integer and initialize it with the base address of array A
     // A++; // this will cause a compilation error because we cannot change the base address of an array
@@ -29,4 +29,5 @@
     for(int i=0; i < 5; i++){
         printf("Address of A[%d] using pointer arithmetic `A+i` : %d, Value *(A+i): %d\n", i, A + i, *(A + i)); // print the address and value of each element in array A using pointer arithmetic
     }
+    return 0;
  }

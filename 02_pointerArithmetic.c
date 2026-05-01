@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-void main(){
+int main(){
     int a; // declare an integer variable a
     int *p; // declare a pointer variable p that can point to an integer
     a = 10;
@@ -38,5 +38,5 @@ void main(){
     char *cp; // declare a pointer variable cp that can point to a char
     double d; // declare a double variable d
     double *dp; // declare a pointer variable dp that can point to a double
-    
+    return 0;
 }
