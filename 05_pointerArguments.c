@@ -19,7 +19,8 @@ void incrementByReference(int *a){
     printf("Address of variable in incrementByReference function: %d\n", a); // print the address of variable a in incrementByReference function
     printf("Value of variable in incrementByReference function: %d\n", *a); // print the value of variable a in incrementByReference function
 }
- void main(){
+
+int main(){
     int a = 10;
     printf("Initial value of variable a: %d\n", a); // print the initial value of variable a
 
