@@ -133,6 +133,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install GNU coreutils
+        run: |
+          set -euo pipefail
+          brew install coreutils
+
       - name: Detect source directory
         run: |
           set -euo pipefail
@@ -169,9 +174,9 @@ jobs:
             echo "Running $name"
 
             if [ "$name" = "10_dynamicMemory" ]; then
-              printf "3\n10\n20\n30\n" | timeout 10s "$bin"
+              printf "3\n10\n20\n30\n" | gtimeout 10s "$bin"
             else
-              timeout 10s "$bin"
+              gtimeout 10s "$bin"
             fi
 
             echo "Finished $name"
