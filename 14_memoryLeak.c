@@ -87,4 +87,5 @@ int main(){
             break; // Exit the loop if the player is out of cash
         }
     }
+    return 0; // Return 0 to indicate that the program ended successfully
 }
