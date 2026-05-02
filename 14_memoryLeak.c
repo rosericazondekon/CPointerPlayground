@@ -29,6 +29,7 @@ int cash;
 void playGame(unsigned int *bet){
     // char cards[] = {'J', 'Q', 'K'}; // Array of cards - this is a local variable that goes on the stack and will be destroyed once the function exits, so it does not cause a memory leak
     char *cards = (char*)malloc(sizeof(char) * 3); // Dynamically allocate memory for an array of 3 characters on the heap to store the cards
+    // char *cards = (char*)malloc(sizeof(char) * 1000); // Use this to simulate a more severe memory leak scenario by allocating a large amount of memory on the heap without freeing it
     cards[0] = 'J'; // Assign the first card to the first element in the array
     cards[1] = 'Q'; // Assign the second card to the second element in the array
     cards[2] = 'K'; // Assign the third card to the third element in the array
