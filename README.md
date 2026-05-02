@@ -29,6 +29,10 @@ Start from top to bottom for the best progression:
 - [08_charArrayPointer.c](08_charArrayPointer.c)
 - [09_multidimArrays.c](09_multidimArrays.c)
 - [10_dynamicMemory.c](10_dynamicMemory.c)
+- [11_pointerFuncReturns.c](11_pointerFuncReturns.c)
+- [12_functionPointers.c](12_functionPointers.c)
+- [13_functionPointerCallbacks.c](13_functionPointerCallbacks.c)
+- [14_memoryLeak.c](14_memoryLeak.c)
 
 ## Quick Start
 
