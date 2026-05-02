@@ -46,4 +46,5 @@ void msg(){
     int *d = addByReference(&a, &b);
     msg();
     printf("The sum of %d and %d is: %d\n", a, b, *d);
+    return 0;
  }
