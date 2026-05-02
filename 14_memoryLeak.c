@@ -46,11 +46,11 @@ void playGame(unsigned int *bet){
     scanf("%zu", &playerBet); // Read the player's bet (the position of the Queen) from the user
     if(cards[playerBet - 1] == 'Q'){
         cash += (*bet) * 3; // If the player wins, add three times their bet to their cash
-        printf("Congratulations! You guessed correctly. Your new cash amount is: %d\n", cash);
+        printf("Congratulations! You guessed correctly. Your new cash amount is: $%d\n", cash);
     }
     else{
         cash -= *bet; // If the player loses, subtract their bet from their cash
-        printf("Sorry, you guessed incorrectly. Your new cash amount is: %d\n", cash);
+        printf("Sorry, you guessed incorrectly. Your new cash amount is: $%d\n", cash);
     }
     free(cards); // Comment this line out to simulate a memory leak scenario
 }
