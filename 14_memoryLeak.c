@@ -20,7 +20,7 @@
 
     // Simple Betting Game
     // "Jack Queen King" is a simple betting game where players bet on one of three cards: Jack, Queen, or King.
-    // The game randomly selects a card, and if the player's bet matches the selected card, they
+    // If the player's bet matches the `Queen`, they
     // win three times their bet; otherwise, they lose their bet. 
     // The game continues until the player is out of money or decides to quit.
 
@@ -87,5 +87,5 @@ int main(){
             break; // Exit the loop if the player is out of cash
         }
     }
-    return 0; // Return 0 to indicate that the program ended successfully
+    return 0;
 }
