@@ -1,4 +1,4 @@
-name: C CI/CD
+name: Build and Test
 
 on:
   push:
