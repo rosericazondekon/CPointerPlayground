@@ -1,5 +1,5 @@
 # CPointerPlayground
-[![Build and Test](https://github.com/rosericazondekon/CPointerPlayground/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/rosericazondekon/CPointerPlayground/actions/workflows/check-standard.yaml)
+[![Build and Test](https://github.com/rosericazondekon/CPointerPlayground/actions/workflows/check-standard.yaml/badge.svg?branch=master)](https://github.com/rosericazondekon/CPointerPlayground/actions/workflows/check-standard.yaml)
 
 A focused, hands-on C playground for mastering pointers from first principles to dynamic memory.
 
